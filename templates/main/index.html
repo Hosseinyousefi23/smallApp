@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>Small-App</title>
+        {% load staticfiles %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <link type="text/css" rel="stylesheet" href="{% static "main/style/index.css" %}"/>
+    </head>
+    <body>
+        <div class="container">
+            <div class="panel-group">
+                {% for post in post_list %}
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 style="display: inline">{{ post.title }}</h3>
+                        </div>
+                        <div class="panel-body">
+                            {{ post.context }}
+                        </div>
+                        <div class="panel-footer">
+                            <div class="panel-author"> {{ post.author }}</div>
+                            <div class="panel-date">{{ post.publish_time }}</div>
+                            <br style="clear: both"/>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <button id="btn-collapse" type="button" class="btn btn-info"
+                    data-toggle="collapse" data-target="#demo"><b
+                    class="btn-create">Create </b><span
+                    class="glyphicon glyphicon-plus"></span>
+            </button>
+            <div id="demo" class="collapse">
+                <form action="{% url 'post' %}" , method="POST" role="form" id="post-form">
+                    {% csrf_token %}
+                    {{ post_form }}
+                    <button type="submit" class="btn btn-success"><b class="btn-create">Create </b>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $(document).scrollTop($(document).height())
+                $("#btn-collapse").on("click", function () {
+                    var counter = 0
+                    var intervalId = setInterval(function () {
+                        counter++
+                        if (counter === 1000) {
+                            clearInterval(intervalId)
+                        }
+                        $(document).scrollTop($(document).height())
+                    }, 1)
+                });
+            })
+
+        </script>
+
+    </body>
+</html>

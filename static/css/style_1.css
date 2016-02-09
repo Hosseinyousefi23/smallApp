@@ -1,0 +1,35 @@
+#main_div{
+	width: 40%;
+	margin: 30 auto 0 auto;
+	border: solid 3px black;
+	padding: 30 30 30 30;
+
+}
+#body_id{
+	background-color: #adc2eb;
+}
+#header_2{
+	margin: 0 auto 0 auto;
+}
+#labels {
+	font-size: 20px;
+}
+#image_id{
+	width : 20%;
+}
+#header_tag_page{
+	margin-bottom: 20px;
+}
+.ui.cards>.card{
+	margin : 20px;
+}
+#submit_button{
+	margin-top: 40px;
+}
+.ui.buttons>.select_tag{
+	margin-top: 10px;
+    margin-left: 5px;
+}
+.yellow.ui.button{
+	margin-top: 30px;
+}

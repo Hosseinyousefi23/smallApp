@@ -1,0 +1,88 @@
+{% load static %}
+{% load mytags %}
+
+<html>
+	<head>
+		<title>sign-up</title>
+		<meta charset='utf-8'>
+        <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}" />
+        <script src="{% static 'semantic/semantic.min.js' %}"></script>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style_1.css' %}">
+        <link rel="shortcut icon" href="{% static 'images/logo.png' %}" />
+	</head>
+
+	<body id="body_id" dir="rtl">
+        <center><h2 id="header_2" >ثبت نام</h2></center>
+        <div id="main_div">
+            <ul>
+                {% for error in form.non_field_errors %}
+                    <li style="color: darkred"> {{ error }} </li>
+                {% endfor %}
+            </ul>
+            <form id="main_form" class="ui form" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    {% if forloop.counter != 5 %}
+                        <div class="field">
+                            <label  id="labels"> {{ field.name|to_persian }} </label>
+                            {% if field.name == 'password' or field.name == 'confirm_password' %}
+                                <input type="password" name="{{ field.name }}" placeholder="{{ field.name|to_persian }}">
+                            {% else %}
+                                <input type="text" name="{{ field.name }}" placeholder="{{ field.name|to_persian }}">
+                            {% endif %}
+                        </div>
+
+                        <ul>
+                            {% for error in field.errors %}
+                                <li style="color: darkred"> {{ error }} </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endfor %}
+
+{#                <div class="field">#}
+{#                    <label id ="labels"> دانشگاه :</label>#}
+{#                    <select name="university">#}
+{#                        <option value="شریف"> شریف</option>#}
+{#                        <option value="Amirkabir"> امیر کبیر</option>#}
+{#                        <option value="Tehran"> تهران</option>#}
+{#                        <option value="Beheshti">شهید بهشتی</option>#}
+{#                    </select>#}
+{#                </div>#}
+
+    {#                <div class="field">#}
+    {#                    <label  id="labels">نام کاربری :</label>#}
+    {#                    <input type="text" name="username" placeholder="نام کاربری">#}
+    {#                </div>#}
+    {##}
+    {#                <div class="field">#}
+    {#                    <label id="labels">رمز عبور :</label>#}
+    {#                    <input type="password" name="password" placeholder="رمز عبور">#}
+    {#                </div>#}
+    {##}
+    {#                <div class="field">#}
+    {#                    <label id="labels">تایید رمز عبور :</label>#}
+    {#                    <input type="password" name="confirm_password" placeholder="تایید رمز عبور">#}
+    {#                </div>#}
+    {##}
+    {#                <div class="field">#}
+    {#                    <label id="labels">شماره دانشجویی یا پرسنلی :</label>#}
+    {#                    <input type="text" name="student_id" placeholder="شماره دانشجویی یا پرسنلی">#}
+    {#                </div>#}
+    {##}
+    {#                <div class="field">#}
+    {#                    <label id ="labels"> دانشگاه :</label>#}
+    {#                    <select name="university">#}
+    {#                        <option value="Sharif_university_of_technology"> شریف</option>#}
+    {#                        <option value="Amirkabir"> امیر کبیر</option>#}
+    {#                        <option value="Tehran"> تهران</option>#}
+    {#                        <option value="Beheshti">شهید بهشتی</option>#}
+    {#                    </select>#}
+    {#                </div>#}
+
+                <button class="ui button" type="submit">ثبت نام</button>
+
+            </form>
+        </div>
+	</body>
+</html>

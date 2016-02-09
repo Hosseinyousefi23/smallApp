@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>{{ person.name|add:' '|add:person.last_name }}'s home page</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="{% static 'persons/style/person.css' %}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 class="full_name">{{ person.name|add:' '|add:person.last_name }}</h1>
+                <img class="profile_image" src="{{ person.profile_image.url }}"/>
+
+
+                <div class="buttons">
+                    <button type="button" class="btn btn-success"><h2><b>
+                        دنبال نمودن
+                    </b></h2></button>
+                    <button type="button" class="btn btn-success">
+                        <h2><b>
+                            رفاقت
+                        </b></h2>
+                    </button>
+                </div>
+            </div>
+            <br style="clear: both"/>
+
+            <div class="content">
+                <div class="panel-group">
+                    {% for post in post_list %}
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 style="display: inline">{{ post.title }}</h3>
+                            </div>
+                            <div class="panel-body">
+                                {{ post.context }}
+                            </div>
+                            <div class="panel-footer">
+                                <div class="panel-date">{{ post.publish_time }}</div>
+                                <br style="clear: both"/>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
